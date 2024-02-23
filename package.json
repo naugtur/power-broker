@@ -1,0 +1,18 @@
+{
+  "name": "power-broker",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    "import": "./index.js"
+  },
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "author": "naugtur",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "ses": "^1.3.0"
+  }
+}
