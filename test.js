@@ -1,5 +1,5 @@
-import { createBroker, broker, claim } from "./index.js";
 import "ses";
+import { createBroker, broker, claim } from "./index.js";
 
 lockdown();
 
@@ -33,22 +33,11 @@ const domPowers = createBroker({
 // enough to emulate the DOM ref passing to components in UI code
 const sharedProps = {};
 
-// more readable console
-const console = {
-  log: (name, what, ...args) => {
-    global.console.log(
-      name.padEnd(30, " ") + "|",
-      what.padEnd(20, " ") + "|",
-      ...args
-    );
-  },
-};
-
-// Think: reactDOM 
+// Think: ReactDOM etc.
 const renderingLibraryCompartment = new Compartment({
   broker,
   sharedProps,
-  console,
+  assert,
 });
 renderingLibraryCompartment.evaluate(`
 globalThis.domnode = {
@@ -58,7 +47,7 @@ globalThis.domnode = {
 }
 const domRef = broker(domnode);
 sharedProps.domRef = domRef;
-console.log('renderingLibraryCompartment', 'DOM state initial', domnode.style.display);
+assert(domnode.style.display === "block");
 `);
 
 // Think: react component
@@ -69,35 +58,35 @@ const componentCompartment = new Compartment({
   },
   claim,
   sharedProps,
-  console,
+  assert,
 });
 componentCompartment.evaluate(`
 const domRef = sharedProps.domRef;
 const allDomWeGet = claim(globalThis.domPowers, domRef); 
-console.log('componentCompartment', 'claim result', Object.getOwnPropertyNames(allDomWeGet));
+assert(Object.getOwnPropertyNames(allDomWeGet).join() === "style");
 allDomWeGet.style.display = "none";
-console.log('componentCompartment', 'stolen global?', allDomWeGet.ownerDocument);
+assert(allDomWeGet.ownerDocument === undefined);
 `);
 
 // The DOM update works
 renderingLibraryCompartment.evaluate(`
-console.log('renderingLibraryCompartment','DOM state later', domnode.style.display);
+assert(domnode.style.display === "none");
 `);
 
 const otherComponentCompartment = new Compartment({
   //domPowers were not allowed by policy
   claim,
   sharedProps,
-  console,
+  assert,
 });
 
 try {
   otherComponentCompartment.evaluate(`
 const domRef = sharedProps.domRef;
 const allDomWeGet = claim(globalThis.domPowers, domRef); 
-console.log('otherComponentCompartment', 'claim result', Object.getOwnPropertyNames(allDomWeGet));
+assert(Object.getOwnPropertyNames(allDomWeGet).length === 0);
 allDomWeGet.style.display = "none";
 `);
 } catch (e) {
-  console.log("otherComponentCompartment", "Error thrown", e.message);
+  assert(e.message === "You do not have the mandate to claim this power.");
 }
