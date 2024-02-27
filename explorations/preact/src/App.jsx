@@ -1,6 +1,8 @@
 import { Component, createRef, h } from 'preact';
 import { claim } from '../../../index.js';
-
+import Domponent1 from 'domponent1';
+import Domponent2 from 'domponent2';
+import Domponent3 from 'domponent3';
 class Color extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +55,12 @@ class App extends Component {
     return (
       <div>
         <Color />
+        <hr></hr>
+        <Domponent1 id={"1"} />
+        <hr></hr>
+        <Domponent2 id={"2"} />
+        <hr></hr>
+        <Domponent3 id={"3"} />
         <hr></hr>
         <button onClick={this.handleButtonClick}>Rerender</button>
         <i>rerenders: {this.state.counter}</i>

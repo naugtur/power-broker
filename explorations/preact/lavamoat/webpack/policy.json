@@ -1,0 +1,27 @@
+{
+  "resources": {
+    "domponent1": {
+      "packages": {
+        "preact": true
+      }
+    },
+    "domponent2": {
+      "packages": {
+        "preact": true
+      }
+    },
+    "domponent3": {
+      "packages": {
+        "preact": true
+      }
+    },
+    "preact": {
+      "globals": {
+        "document.createElement": true,
+        "document.createElementNS": true,
+        "document.createTextNode": true,
+        "setTimeout": true
+      }
+    }
+  }
+}

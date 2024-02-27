@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        // don't mind me, I'm a hack
+        let c;
+        Object.defineProperty(globalThis,'domPowers', {
+            get: () => c,
+            set: v => {
+                console.log('domPowers:', v)
+                c = v
+            }
+        })
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preact App</title>

@@ -1,5 +1,3 @@
-import "ses";
-
 import { broker, createBroker } from "../../index.js";
 import { options } from "preact";
 
@@ -19,18 +17,8 @@ const domPowersBroker = createBroker({
   },
 });
 
-// pretend LavaMoat
-globalThis.domPowers = {
-  CSS: domPowersBroker.CSS,
-  INPUTS: domPowersBroker.INPUTS,
-}
-
-// Naive, but this is a demo without lavamoat
-lockdown({
-  consoleTaming: "unsafe",
-  errorTaming: "unsafe",
-  overrideTaming: "severe",
-});
+// TODO: make it really global
+globalThis.domPowers = domPowersBroker
 
 // Store previous hook
 const { vnode: prevVnode, event: prevEvent } = options;

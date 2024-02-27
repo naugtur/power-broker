@@ -1,0 +1,22 @@
+{
+  "resources": {
+    "domponent1": {
+      "globals": {
+        "domPowers.claim": true,
+        "domPowers.CSS": true,
+        "domPowers.INPUT": true
+      }
+    },
+    "domponent2": {
+      "globals": {
+        "domPowers.claim": true,
+        "domPowers.CSS": true
+      }
+    },
+    "domponent3": {
+      "globals": {
+        "domPowers.claim": true
+      }
+    }
+  }
+}

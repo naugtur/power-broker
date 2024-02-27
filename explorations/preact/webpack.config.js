@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const LavaMoat = require('@lavamoat/webpack')
 
 module.exports = {
   // Entry point of your application
@@ -21,7 +22,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/, // Match both .js and .jsx files
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: {
           loader: "babel-loader",
           options: {
@@ -38,15 +39,17 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.css$/, // Match CSS files
-        use: ["style-loader", "css-loader"], // Process CSS files
-      },
     ],
   },
 
   // Plugins for additional functionality
   plugins: [
+    new LavaMoat({
+      generatePolicy: true,
+      readableResourceIds: true,
+      HtmlWebpackPluginInterop: true,
+      emitPolicySnapshot: true,
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html", // Path to your HTML template
     }),
