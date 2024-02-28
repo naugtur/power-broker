@@ -17,9 +17,12 @@
     },
     "preact": {
       "globals": {
+        "cancelAnimationFrame": true,
+        "clearTimeout": true,
         "document.createElement": true,
         "document.createElementNS": true,
         "document.createTextNode": true,
+        "requestAnimationFrame": true,
         "setTimeout": true
       }
     }

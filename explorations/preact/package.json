@@ -4,8 +4,10 @@
   "description": "A simple Preact app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --open",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "serve": "http-server -c-1 dist",
+    "start": "npm run build && npm run serve",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -15,14 +17,15 @@
     "@babel/plugin-transform-react-jsx": "^7.18.0",
     "@babel/preset-env": "^7.18.0",
     "@lavamoat/allow-scripts": "^3.0.2",
-    "@lavamoat/webpack": "file:../../../LavaMoat/packages/webpack",
+    "@lavamoat/webpack": "^0.2.0-beta.0",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.1.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.9.0"
+    "webpack-cli": "^4.9.2"
   },
   "dependencies": {
     "domponent1": "file:./domponent/domponent-1.0.0.tgz",

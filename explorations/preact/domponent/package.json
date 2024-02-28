@@ -1,7 +1,7 @@
 {
   "name": "domponent",
   "version": "1.0.0",
-  "main": "DomWiggler.jsx",
+  "main": "DomWiggler.js",
   "license": "ISC",
   "dependencies": {
     "preact": "^10.9.0"

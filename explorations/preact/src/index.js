@@ -1,4 +1,6 @@
-import '../hardenpreact.js';
+import '../hardenpreact.js'; // replace with noop to disable hardening
+// import '../noop.js';
+
 import { h, render } from 'preact';
 import App from './App';
 

@@ -1,9 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const LavaMoat = require('@lavamoat/webpack')
+const LavaMoat = require("@lavamoat/webpack");
 
 module.exports = {
-  // Entry point of your application
   entry: "./src/index.js",
   mode: "development",
   devtool: "source-map",
@@ -11,18 +10,16 @@ module.exports = {
     minimize: false,
   },
 
-  // Output configuration for Webpack
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
 
-  // Module rules for processing different types of files
   module: {
     rules: [
       {
-        test: /\.jsx?$/, // Match both .js and .jsx files
-        // exclude: /node_modules/,
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
         use: {
           loader: "babel-loader",
           options: {
@@ -42,36 +39,18 @@ module.exports = {
     ],
   },
 
-  // Plugins for additional functionality
   plugins: [
     new LavaMoat({
-      generatePolicy: true,
       readableResourceIds: true,
       HtmlWebpackPluginInterop: true,
       emitPolicySnapshot: true,
     }),
     new HtmlWebpackPlugin({
-      template: "./src/index.html", // Path to your HTML template
+      template: "./src/index.html",
     }),
   ],
 
-  // Development server configuration
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    compress: true,
-    port: 9000,
-  },
-
-  // Resolve .js and .jsx file extensions
   resolve: {
     extensions: [".js", ".jsx"],
-    alias: {
-      react: "preact/compat",
-      "react-dom/test-utils": "preact/test-utils",
-      "react-dom": "preact/compat", // Must be below test-utils
-      "react/jsx-runtime": "preact/jsx-runtime",
-    },
   },
 };
