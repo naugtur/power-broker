@@ -1,11 +1,5 @@
 # power-broker
 
-see test.js for explanation of what it does
+See what it does by reading explorations/preact and clicking on http://naugtur.pl/power-broker/
 
-# TODO
-
-Explore applying to react or preact or other
-- make a project that renders some UI with 3rdparty components under lavamoat
-- change or wrap jsx transform to plug in claiming where necessary
-- patch the rendering code and broker all dom nodes
-
+[Readme of the preact example](./explorations/preact/)
