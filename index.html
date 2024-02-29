@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="./lockdown"></script>
+    <script>
+        // don't mind me, I'm a hack to pave over a feature that's not yet in @lavamoat/webpack
+        let c, once;
+        Object.defineProperty(globalThis, 'domPowers', {
+            get: () => c,
+            set: v => {
+                if (once) return;
+                console.log('domPowers:', v)
+                c = v
+                once = 1
+            }
+        })
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preact App</title>
+    <style>
+        body {
+            padding: 10px;
+            font-family: sans-serif;
+        }
+
+        section div {
+            border: 1px solid #aaa;
+            margin: 10px;
+            width: 200px;
+            padding: 10px;
+        }
+        input, button {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+<script defer src="bundle.js"></script></head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+</html>

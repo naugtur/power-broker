@@ -1,0 +1,42 @@
+{
+  "resources": {
+    "domponent1": {
+      "globals": {
+        "domPowers.CSS": true,
+        "domPowers.INPUTS": true,
+        "domPowers.claim": true
+      },
+      "packages": {
+        "preact": true
+      }
+    },
+    "domponent2": {
+      "globals": {
+        "domPowers.CSS": true,
+        "domPowers.claim": true
+      },
+      "packages": {
+        "preact": true
+      }
+    },
+    "domponent3": {
+      "globals": {
+        "domPowers.claim": true
+      },
+      "packages": {
+        "preact": true
+      }
+    },
+    "preact": {
+      "globals": {
+        "cancelAnimationFrame": true,
+        "clearTimeout": true,
+        "document.createElement": true,
+        "document.createElementNS": true,
+        "document.createTextNode": true,
+        "requestAnimationFrame": true,
+        "setTimeout": true
+      }
+    }
+  }
+}
